@@ -46,15 +46,12 @@ var getLocalKey = function getLocalKey(key, value) {
  * This version of local storage supports the following data types as it is and other data types will be treated as string
  * object, string, number and Boolean
  */
-
-
 var SecureLocalStorage = /*#__PURE__*/function () {
   function SecureLocalStorage() {
     _classCallCheck(this, SecureLocalStorage);
 
     _defineProperty(this, "_localStorageItems", {});
 
-    this.encrypt = new _encryption.default();
     this._localStorageItems = (0, _localStorageHelpers.default)();
   }
   /**
@@ -71,8 +68,8 @@ var SecureLocalStorage = /*#__PURE__*/function () {
       var parsedKeyLocal = getLocalKey(key, value);
       var parsedKey = KEY_PREFIX + key;
       if (key != null) this._localStorageItems[parsedKey] = value;
-      
-      localStorage.setItem(parsedKeyLocal, this.encrypt.encrypt(parsedValue));
+      var encrypt = new _encryption.default();
+      localStorage.setItem(parsedKeyLocal, encrypt.encrypt(parsedValue));
     }
     /**
      * Function to get value from secure local storage
