@@ -23,8 +23,6 @@ var getFingerprint = function getFingerprint() {
   else HASH_KEY_CUSTOM = process.env.NEXT_PUBLIC_SECURE_LOCAL_STORAGE_HASH_KEY || process.env.SECURE_LOCAL_STORAGE_HASH_KEY || process.env.REACT_APP_SECURE_LOCAL_STORAGE_HASH_KEY || HASH_KEY;
   if (typeof window === "undefined") return HASH_KEY_CUSTOM;
   
-  console.log('[SecureLocalStorage 해시키]', HASH_KEY_CUSTOM);
-  
   return _fingerprint.default.getFingerprint() + HASH_KEY_CUSTOM;
 };
 
