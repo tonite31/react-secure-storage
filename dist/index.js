@@ -54,6 +54,7 @@ var SecureLocalStorage = /*#__PURE__*/function () {
 
     _defineProperty(this, "_localStorageItems", {});
 
+    this.encrypt = new _encryption.default();
     this._localStorageItems = (0, _localStorageHelpers.default)();
   }
   /**
@@ -70,8 +71,8 @@ var SecureLocalStorage = /*#__PURE__*/function () {
       var parsedKeyLocal = getLocalKey(key, value);
       var parsedKey = KEY_PREFIX + key;
       if (key != null) this._localStorageItems[parsedKey] = value;
-      var encrypt = new _encryption.default();
-      localStorage.setItem(parsedKeyLocal, encrypt.encrypt(parsedValue));
+      
+      localStorage.setItem(parsedKeyLocal, this.encrypt.encrypt(parsedValue));
     }
     /**
      * Function to get value from secure local storage
