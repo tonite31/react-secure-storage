@@ -13,7 +13,9 @@ const getFingerprint = () => {
   // If Cypress is installed, then load env from cypress, adding support for cypress
   if (typeof Cypress != "undefined") HASH_KEY_CUSTOM = Cypress.env("SECURE_LOCAL_STORAGE_HASH_KEY") || Cypress.env("REACT_APP_SECURE_LOCAL_STORAGE_HASH_KEY") || HASH_KEY;
   //Load the custom HASH KEY from process.env
-  else HASH_KEY_CUSTOM = process.env.SECURE_LOCAL_STORAGE_HASH_KEY || process.env.REACT_APP_SECURE_LOCAL_STORAGE_HASH_KEY || HASH_KEY;
+  else HASH_KEY_CUSTOM = process.env.NEXT_PUBLIC_SECURE_LOCAL_STORAGE_HASH_KEY || process.env.SECURE_LOCAL_STORAGE_HASH_KEY || process.env.REACT_APP_SECURE_LOCAL_STORAGE_HASH_KEY || HASH_KEY;
+  
+  console.log('[SecureLocalStorage 해시키]', HASH_KEY_CUSTOM);
 
   if (typeof window === "undefined") return HASH_KEY_CUSTOM;
   return clientJS.getFingerprint() + HASH_KEY_CUSTOM;
